@@ -1,6 +1,13 @@
 #All questions must use a loop for full points.
+import random
+
 
 def oddNumbers(n:int) ->str:
+    string = ""
+    for i in range(1,n+1):
+        if i%2 == 1:
+            string = string + str(i) + " "
+    return string[0:-1]
     """
     Print out all odd numbers from 1 to n(inclusive) in a single string seperated by spaces.
     example oddNumbers(5) -> "1 3 5"
@@ -10,6 +17,10 @@ def oddNumbers(n:int) ->str:
 
 
 def backwards(n)-> int:
+    string = ""
+    for i in range(n, 0, -1):
+        string = string + str(i) + " "
+    return string[0:-1]
     """
     modify the below function such that it prints out all the numbers from n to 1
     inclusive starting at n and counting down to 1
@@ -21,6 +32,12 @@ def backwards(n)-> int:
 
 
 def randomRepeating():
+    num = None
+    count = 0
+    while num != 10:
+        count+=1
+        num = random.randint(1,10)
+    return count
     """
     Print out a random number from 1-10 until you get a 10. Then print out how many
     times it took to roll a 10
@@ -30,6 +47,15 @@ def randomRepeating():
     tries = 0
     print(f"it took {tries} tries to get a 10")
 def randomRange(n):
+    highest = 0
+    lowest = 101
+    for i in range(1,n):
+        number = random.randint(1,100)
+        if number > highest:
+            highest = number
+        if number < lowest:
+            lowest = number
+        print(highest, lowest)
     """
     Generate a random number from 1 to 100 n number of times. Then after that is
     done print out what the highest number and the lowers number was from the rolled numbers.
@@ -38,13 +64,31 @@ def randomRange(n):
     :return:
     """
 def reverse(word:str)->str:
+    reverse = ""
+    for char in range(len(word)-1, -1, -1):
+        print(char)
+        reverse += word[char]
+    return reverse
     """
     Takes in a string as an argument and return the given string in reverse.
     example reverse("cat") -> "tac"
     example reverse("Hello") -> "olleH"
     """
-
-def fizzBuzzContinuous(n):
+def fizzBuzzContinuous(n) -> str:
+    string = ""
+    for num in range(1,n+1):
+        if num%3 == 0:
+            string += "fizz"
+            if num%5 == 0:
+                string+= "buzz"
+            string+=" "
+        elif num%5 == 0:
+            string += "buzz "
+        else:
+            string += str(num) + " "
+    if string[-1] == " ":
+        string = string[0:-1]
+    return string
     """
     Modify the function such that it does the fizzbuzz operation on all numbers
     from 1 to n(inclusive).
@@ -59,7 +103,19 @@ def fizzBuzzContinuous(n):
     :return:
     """
 
-def collatz(n):
+def collatz(n) -> str:
+    string = str(n) + " "
+    num = n
+    while num !=1 :
+        if num%2 == 0:
+            num = int(num/2)
+        else:
+            num = num*3 + 1
+        string += str(num) + " "
+    if string[-1] == " ":
+        string = string[0:-1]
+    return string
+
     """
     Modify this function such that it mimics the collatz conjecture starting at n
     and prints out each number.
@@ -70,8 +126,22 @@ def collatz(n):
     :return:
     """
 
-
 def fibonacci(n):
+    map = {}
+    if n >= 1:
+        map[1] = 0
+        print(map)
+    if n>= 2:
+        map[2] = 1
+        print(map)
+    for i in range(3,n+2):
+        previous_index = i-1
+        index_before_that = i-2
+        map[i] = map[previous_index] + map[index_before_that]
+    string = str(map[1])
+    for i in range(2, len(map)):
+        string += " " + str(map[i])
+    return string
     """
     for the given argument n print out the first n numbers of the fibonacci
     sequence in a single string sperated by spaces.
@@ -83,6 +153,3 @@ def fibonacci(n):
     :param n:
     :return:
     """
-
-
-print(fibonacci(300))
